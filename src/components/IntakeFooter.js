@@ -21,17 +21,11 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     top: 'auto',
     bottom: 0,
+    height: 60,
+    backgroundColor: 'slategray',
   },
   grow: {
     flexGrow: 1,
-  },
-  fabButton: {
-    position: 'absolute',
-    zIndex: 1,
-    top: -30,
-    left: 0,
-    right: 0,
-    margin: '0 auto',
   },
 }));
 
@@ -41,7 +35,7 @@ export default function IntakeFooter() {
   return (
     <React.Fragment>
       <AppBar position="fixed" color="primary" className={classes.appBar}>
-        test
+
       </AppBar>
     </React.Fragment>
   );

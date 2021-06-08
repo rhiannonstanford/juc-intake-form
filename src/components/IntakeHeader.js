@@ -20,36 +20,32 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  // appBar: {
+  //   backgroundColor: 'slategray',
+  //   // bottom: 'auto',
+  //   // top: 0,
+  // },
 }));
 
 
 
-// .App-header {
-//   background-color: #282c34;
-//   min-height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: calc(10px + 2vmin);
-//   color: white;
-// }
+
 
 
 
 export default function IntakeHeader () {
   const classes = useStyles();
 
-//   let history = useHistory();
+  let history = useHistory();
 
 function handleClick() {
-  // history.push("/login");
+  history.push("/home");
 };
 
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar className="app-header" position="static">
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
@@ -57,7 +53,7 @@ function handleClick() {
           <Typography variant="h6" className={classes.title}>
             Just Utah Coders Intake Form
           </Typography>
-          <Button color="inherit" onClick={handleClick}>Login</Button>
+          <Button color="inherit" onClick={handleClick}>Home</Button>
         </Toolbar>
       </AppBar>
     </div>
