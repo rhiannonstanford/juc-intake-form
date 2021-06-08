@@ -54,6 +54,7 @@ const initialIntakeErrors = {
     birthDate: "",
     emailConsent: "",
   };
+const initialDisabled = true;
 
 
 const IntakeForm = () => {
@@ -62,8 +63,11 @@ const IntakeForm = () => {
 
   const [credentials, setCredentials] = useState(initialIntakeValues);
   const [intakeErrors, setIntakeErrors] = useState(initialIntakeErrors); 
+  const [disabled, setDisabled] = useState(initialDisabled) // boolean, for submit button 
+
 
   const history = useHistory();
+
 
   const handleChange = e => {
     const userIntakeInfo = {...credentials, [e.target.name]: e.target.value}
@@ -71,6 +75,7 @@ const IntakeForm = () => {
     validate(e.target.name, e.target.value)
     setCredentials(userIntakeInfo);
   };
+
 
 
   const validate = (name, value) => {
@@ -109,6 +114,14 @@ const IntakeForm = () => {
     gsap.to(".intake-container", {duration: 2, y: 30});
     }, []); // creates intake form animation, slide down
 
+    useEffect(() => {
+        schema.isValid(credentials).then(valid => setDisabled(!valid))
+      }, [credentials]); // Adjust the status of 'disabled" every time formValues changes
+   
+      useEffect(() => {
+       console.log("The form Errors have changed", intakeErrors)
+      }, [intakeErrors]);
+
     return (
     <div >
         
@@ -142,15 +155,23 @@ const IntakeForm = () => {
             <div className='newUserForm-radio'>
                 <input type="radio" name="emailConsent" onChange={handleChange} value={true}/>check to agree to be contacted
                 </div>
-            <div style={{color: "red", fontSize: "16px"}}>{initialIntakeErrors.emailConsent}</div>
+            <div style={{color: "red", fontSize: "16px"}}>{intakeErrors.emailConsent}</div>
             <Button 
             variant="contained" 
             className={classes.button} 
             size="large"
             type="submit"
+            disabled={disabled}
             >
             Submit
             </Button>
+
+            <div>{intakeErrors.name}</div>
+            <div>{intakeErrors.email}</div>
+            <div>{intakeErrors.birthDate}</div>
+            <div>{intakeErrors.emailConsent}</div>
+
+
         </form>
 
         </div>
