@@ -1,34 +1,34 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 import { Switch, Route } from "react-router-dom";
 
 // import components
-import IntakeHeader from './components/IntakeFooter';
-import IntakeFooter from './components/IntakeHeader';
+import IntakeFooter from './components/IntakeFooter';
+import IntakeHeader from './components/IntakeHeader';
 import IntakeForm from './components/IntakeForm';
+import Welcome from './components/Welcome';
 
-
+const initialUser = {
+  name: "",
+}
 
 function App() {
+  const [user, setUser] = useState(initialUser);
+
   return (
     <div className="App">
       
-        {/* <IntakeHeader/>  */}
+        <IntakeHeader/> 
 
         <Switch>
-            {/* <Route exact path="/">
-              <Landing/>
-            </Route> */}
 
-            <Route exact path="/intake">
-              <IntakeForm/>
+            <Route exact path="/">
+              <IntakeForm setUser={setUser}/>
             </Route>
-
         
-            {/* <Route path="/protected">
-              <SelectSpecies/>
-              <Sightings/>
-            </Route> */}
+            <Route path="/welcome">
+              <Welcome user={user}/>
+            </Route>
 
         </Switch>
 

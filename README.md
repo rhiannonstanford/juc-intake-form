@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+## Welcome!  JUC - Internship Technical Interview - New Participant Intake Form
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is React web app that allows users to input their name, email, birthdate, and email consent to receive email communication from Just Utah Coders.  
 
-## Available Scripts
+To Install:
+    npm i
+    npm start
 
-In the project directory, you can run:
+## Back-end API
 
-### `npm start`
+https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Screenshots
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+    <img src="./src/assets/intake-form.png"
+    alt="intake screenshot"
+    width="500" />
 
-### `npm test`
+    <img src="./src/assets/intake-form-complete.png"
+    alt="intake screenshot"
+    width="500" />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    <img src="./src/assets/intake-form-success.png"
+    alt="intake screenshot"
+    width="500" />
 
-### `npm run build`
+## Dependencies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Install react router dom
+    [] npm install react-router-dom
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+    } from "react-router-dom";
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Install Material UI
+    [] npm install @material-ui/core
+    [] npm install @material-ui/icons
 
-### `npm run eject`
+### Install Greensock 
+    - used for animations
+    []  npm install gsap
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    import { gsap } from "gsap";
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Axios
+    [] npm install axios
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    import axios from 'axios';
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Install Notinstack
 
-## Learn More
+  https://github.com/iamhosseindhv/notistack
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  [] npm install notistack
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  import { SnackbarProvider } from 'notistack';
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Install Yup - form validation
 
-### Analyzing the Bundle Size
+    https://www.npmjs.com/package/yup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    [] npm install -S yup
 
-### Making a Progressive Web App
+### npm install dateformat
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    [] npm install dateformat
 
-### Advanced Configuration
+    - This is an npm package that formats date.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+    https://www.npmjs.com/package/dateformat
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

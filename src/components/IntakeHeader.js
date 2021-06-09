@@ -8,11 +8,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    backgroundColor: "blue",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -20,16 +22,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
-  // appBar: {
-  //   backgroundColor: 'slategray',
-  //   // bottom: 'auto',
-  //   // top: 0,
-  // },
 }));
-
-
-
-
 
 
 
@@ -38,20 +31,18 @@ export default function IntakeHeader () {
 
   let history = useHistory();
 
-function handleClick() {
-  history.push("/home");
-};
-
+  function handleClick() {
+    history.push("/");
+  };
 
   return (
     <div className={classes.root}>
-      <AppBar className="app-header" position="static">
+      <AppBar position="static" style={{ background: '#2E3B55' }}>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Just Utah Coders Intake Form
+            Just Utah Coders
           </Typography>
           <Button color="inherit" onClick={handleClick}>Home</Button>
         </Toolbar>

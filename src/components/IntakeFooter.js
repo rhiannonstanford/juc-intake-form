@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     top: 'auto',
     bottom: 0,
     height: 60,
-    backgroundColor: 'slategray',
+    backgroundColor: '#2E3B55',
   },
   grow: {
     flexGrow: 1,
