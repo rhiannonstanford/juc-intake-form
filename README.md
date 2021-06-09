@@ -14,15 +14,15 @@ https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users
 
 <img src="./src/assets/intake-form.png"
 alt="intake screenshot"
-width="500" />
+width="250" />
 
 <img src="./src/assets/intake-form-complete.png"
 alt="intake screenshot"
-width="500" />
+width="250" />
 
 <img src="./src/assets/intake-form-success.png"
 alt="intake screenshot"
-width="500" />
+width="250" />
 
 ## Dependencies
 
