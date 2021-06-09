@@ -1,38 +1,62 @@
 .App {
   text-align: center;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* -------------------  INTAKE FORM ------------------------ */
+.intake-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 90vw;
+  padding: 20px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.App-link {
-  color: #61dafb;
+.intake-heading-message {
+  width: 100vw;
+  align-self: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 2rem;
+  color: rgb(43, 43, 43);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.intake-sub-heading {
+  width: 100vw;
+  align-self: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  color: rgb(43, 43, 43);
+}
+
+.intake-radio {
+  width: 100vw;
+  /* have to include important to override Mat UI root */
+  margin: 0 auto !important; 
+  color:rgb(87, 86, 86);
+}
+
+.intake-errors {
+  width: 100vw;
+  color: red;
+  font-style: italic;
+  /* have to include important to override Mat UI root */
+  margin: 0 auto !important; 
+}
+
+/* -------------------  WELCOME PAGE ------------------------ */
+
+.welcome-container {
+  padding: 20px;
+}
+
+.welcome-message {
+  width: 100vw;
+  align-self: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 2rem;
+  color: rgb(43, 43, 43);
 }
