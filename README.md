@@ -12,17 +12,17 @@ https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users
 
 ## Screenshots
 
-    <img src="./src/assets/intake-form.png"
-    alt="intake screenshot"
-    width="500" />
+<img src="./src/assets/intake-form.png"
+alt="intake screenshot"
+width="500" />
 
-    <img src="./src/assets/intake-form-complete.png"
-    alt="intake screenshot"
-    width="500" />
+<img src="./src/assets/intake-form-complete.png"
+alt="intake screenshot"
+width="500" />
 
-    <img src="./src/assets/intake-form-success.png"
-    alt="intake screenshot"
-    width="500" />
+<img src="./src/assets/intake-form-success.png"
+alt="intake screenshot"
+width="500" />
 
 ## Dependencies
 
