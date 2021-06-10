@@ -84,12 +84,12 @@ const IntakeForm = (props) => {
         const updatedIntakeInfo = {...intakeInfo, birthDate: formattedDate}
         setIntakeInfo(updatedIntakeInfo)
 
-        // axios.post("https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users", updatedIntakeInfo)
-        // .then(res => {
+        axios.post("https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users", updatedIntakeInfo)
+        .then(res => {
 
         history.push("/welcome");
-        // })
-        // .catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
     }
 
   

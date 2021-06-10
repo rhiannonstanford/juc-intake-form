@@ -19,7 +19,7 @@ const schema = yup.object().shape({
       .date().default(function () {
         return new Date();
       }).optional(),
-
+      // I tried to get .optional() to work, but couldn't get it to work.  Will debug later.
 
     emailConsent: yup
       .boolean()
