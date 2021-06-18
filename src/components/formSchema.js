@@ -6,7 +6,7 @@ const schema = yup.object().shape({
       .string()
       .trim()
       .required('Name is required')
-      .min(2, 'Username must be 2 characters long'), 
+      .min(2, 'username must be at least 2 characters long'), 
 
     email: yup
       .string()
@@ -16,9 +16,13 @@ const schema = yup.object().shape({
       .min(2, 'Email must be 2 characters long'), 
 
     birthDate: yup 
-      .date().default(function () {
+      .date()
+      .optional()
+      .default(function () {
         return new Date();
-      }).optional(),
+      })
+     
+      .typeError('this must be a valid date'),
       // I tried to get .optional() to work, but couldn't get it to work.  Will debug later.
 
     emailConsent: yup

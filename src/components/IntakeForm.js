@@ -152,7 +152,10 @@ const IntakeForm = (props) => {
                     onChange={handleChange}
                     />
                     <div className='intake-radio'>
-                        <input type="radio" name="emailConsent" onChange={handleChange} value={true}/> Yes! I agree to be contacted via email.
+                       
+                        <input type="radio" id="emailConsent" name="emailConsent" onChange={handleChange} value={true}/> 
+                        <label for="emailConsent"> Yes! I agree to be contacted via email.
+                        </label>
                     </div>
 
                     <Button 
