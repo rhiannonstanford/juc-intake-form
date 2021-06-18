@@ -102,6 +102,7 @@ const IntakeForm = (props) => {
     const handleClear = (e) => {
         e.preventDefault();
         setIntakeInfo(initialIntakeValues);
+        window.location.reload();
         enqueueSnackbar('Form has been cleared.');
     };
     
@@ -152,7 +153,6 @@ const IntakeForm = (props) => {
                     onChange={handleChange}
                     />
                     <div className='intake-radio'>
-                       
                         <input type="radio" id="emailConsent" name="emailConsent" onChange={handleChange} value={true}/> 
                         <label for="emailConsent"> Yes! I agree to be contacted via email.
                         </label>
