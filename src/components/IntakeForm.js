@@ -52,7 +52,7 @@ const IntakeForm = (props) => {
 
     const [intakeInfo, setIntakeInfo] = useState(initialIntakeValues);
     const [intakeErrors, setIntakeErrors] = useState(initialIntakeErrors); 
-    const [isValid, setIsValid] = useState(false); 
+    const [isValid, setIsValid] = useState(false); // boolean, for submit button 
     const [displayErrors,setDisplayErrors] = useState(false);
 
     const history = useHistory();
@@ -61,17 +61,15 @@ const IntakeForm = (props) => {
 
     const handleChange = e => {
         if(e.target.name==='birthDate'&&e.target.value===''){
+            // edge case for birthDate, if birthDate is empty string, yup will fail.  If it is null, yup will allow it to pass validation
             setIntakeInfo({...intakeInfo, [e.target.name]: null});
         }
         else{
             setIntakeInfo({...intakeInfo, [e.target.name]: e.target.value})
         }
     };
-    // const isValid=(errors)=>{
-    //     return Object.keys(errors).filter(key=>errors[key]!=='').length===0;
 
-    // }
-    const validate = (formErrors,name, value) => {
+    const validate = (formErrors, name, value) => {
         yup.reach(schema, name)
         .validate(value)
         .then(() => {
@@ -98,21 +96,25 @@ const IntakeForm = (props) => {
         const updatedIntakeInfo = {...intakeInfo, birthDate: formattedDate}
         setIntakeInfo(updatedIntakeInfo)
 
-        // axios.post("https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users", updatedIntakeInfo)
-        // .then(res => {
+        axios.post("https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users", updatedIntakeInfo)
+        .then(res => {
 
         history.push("/welcome");
-        // })
-        // .catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
     }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const formErrors = {...intakeErrors};
-        Object.keys(intakeInfo).forEach(name=>validate(formErrors,name,intakeInfo[name]));
+
+        Object.keys(intakeInfo).forEach(name=>validate(formErrors, name,intakeInfo[name]));
+
         schema.isValid(intakeInfo).then(valid=>{
             setIsValid(valid)
         });
     };
+
     useEffect(()=>{
         if(isValid){
             setDisplayErrors(false);
@@ -123,6 +125,7 @@ const IntakeForm = (props) => {
             setDisplayErrors(true);
         }
     },[isValid])
+
     const handleClear = (e) => {
         e.preventDefault();
         setIntakeInfo(initialIntakeValues);
@@ -133,9 +136,7 @@ const IntakeForm = (props) => {
         gsap.to(".intake-container", {duration: 2, y: 30});
     }, []); // creates intake form animation, slide down
 
-   
-    useEffect(() => {
-    }, [intakeErrors]);
+
 
     return (
         <div >

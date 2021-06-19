@@ -10,6 +10,16 @@ To Install:
 
 https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users 
 
+[
+{
+"id": 1,
+"name": "Test User",
+"email": "Post 1",
+"birthDate": "2000-01-01",
+"emailConsent": true
+}
+]
+
 ## Screenshots
 
 <img src="./src/assets/intake-form.png"
