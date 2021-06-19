@@ -15,15 +15,13 @@ const schema = yup.object().shape({
       .required('Email is required')
       .min(2, 'Email must be 2 characters long'), 
 
-    birthDate: yup 
+      birthDate: yup
       .date()
-      .optional()
+      .nullable()
       .default(function () {
         return new Date();
       })
-     
       .typeError('this must be a valid date'),
-      // I tried to get .optional() to work, but couldn't get it to work.  Will debug later.
 
     emailConsent: yup
       .boolean()
@@ -31,5 +29,6 @@ const schema = yup.object().shape({
       .oneOf([true], "Please check to receive JUC emails and newsletters."),
 
 });
+
 
 export default schema;

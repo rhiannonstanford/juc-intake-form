@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 const initialIntakeValues = {
   name: "",
   email: "",
-  birthDate: "",
+  birthDate: null,
   emailConsent: false,
 };
 const initialIntakeErrors = {
@@ -44,7 +44,6 @@ const initialIntakeErrors = {
     birthDate: "",
     emailConsent: "",
 };
-const initialDisabled = true;
 
 
 const IntakeForm = (props) => {
@@ -53,23 +52,38 @@ const IntakeForm = (props) => {
 
     const [intakeInfo, setIntakeInfo] = useState(initialIntakeValues);
     const [intakeErrors, setIntakeErrors] = useState(initialIntakeErrors); 
-    const [disabled, setDisabled] = useState(initialDisabled) // boolean, for submit button 
+    const [isValid, setIsValid] = useState(false); 
+    const [displayErrors,setDisplayErrors] = useState(false);
 
     const history = useHistory();
     const classes = useStyles();
     const dateFormat = require("dateformat");
 
     const handleChange = e => {
-        const userIntakeInfo = {...intakeInfo, [e.target.name]: e.target.value}
-        validate(e.target.name, e.target.value)
-        setIntakeInfo(userIntakeInfo);
+        if(e.target.name==='birthDate'&&e.target.value===''){
+            setIntakeInfo({...intakeInfo, [e.target.name]: null});
+        }
+        else{
+            setIntakeInfo({...intakeInfo, [e.target.name]: e.target.value})
+        }
     };
+    // const isValid=(errors)=>{
+    //     return Object.keys(errors).filter(key=>errors[key]!=='').length===0;
 
-    const validate = (name, value) => {
+    // }
+    const validate = (formErrors,name, value) => {
         yup.reach(schema, name)
         .validate(value)
-        .then(() => setIntakeErrors({ ...intakeErrors, [name]: ''}))
-        .catch(err => setIntakeErrors({ ...intakeErrors, [name]: err.errors[0] }))
+        .then(() => {
+            formErrors[name] = '';
+            setIntakeErrors({...formErrors});
+        })
+        .catch(err => {
+            if(!(name==='birthDate'&&value==='')){
+                formErrors[name] =  err.errors[0];
+                setIntakeErrors({...formErrors});
+            }
+        } )
     }; // run validation with yup
 
     const dateFormatter = (stringDate) => {
@@ -84,25 +98,34 @@ const IntakeForm = (props) => {
         const updatedIntakeInfo = {...intakeInfo, birthDate: formattedDate}
         setIntakeInfo(updatedIntakeInfo)
 
-        axios.post("https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users", updatedIntakeInfo)
-        .then(res => {
+        // axios.post("https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users", updatedIntakeInfo)
+        // .then(res => {
 
         history.push("/welcome");
-        })
-        .catch(err => console.log(err));
+        // })
+        // .catch(err => console.log(err));
     }
-
-  
     const handleSubmit = (e) => {
         e.preventDefault();
-        postIntakeInfo(intakeInfo);
-        enqueueSnackbar('Yes!  You have successfully signed up!');
+        const formErrors = {...intakeErrors};
+        Object.keys(intakeInfo).forEach(name=>validate(formErrors,name,intakeInfo[name]));
+        schema.isValid(intakeInfo).then(valid=>{
+            setIsValid(valid)
+        });
     };
-
+    useEffect(()=>{
+        if(isValid){
+            setDisplayErrors(false);
+            postIntakeInfo(intakeInfo);
+            enqueueSnackbar('Yes!  You have successfully signed up!');
+        }
+        else{
+            setDisplayErrors(true);
+        }
+    },[isValid])
     const handleClear = (e) => {
         e.preventDefault();
         setIntakeInfo(initialIntakeValues);
-        window.location.reload();
         enqueueSnackbar('Form has been cleared.');
     };
     
@@ -110,9 +133,6 @@ const IntakeForm = (props) => {
         gsap.to(".intake-container", {duration: 2, y: 30});
     }, []); // creates intake form animation, slide down
 
-    useEffect(() => {
-        schema.isValid(intakeInfo).then(valid => setDisabled(!valid))
-    }, [intakeInfo]); // adjust the status of 'disabled" every time formValues changes
    
     useEffect(() => {
     }, [intakeErrors]);
@@ -153,9 +173,7 @@ const IntakeForm = (props) => {
                     onChange={handleChange}
                     />
                     <div className='intake-radio'>
-                        <input type="radio" id="emailConsent" name="emailConsent" onChange={handleChange} value={true}/> 
-                        <label for="emailConsent"> Yes! I agree to be contacted via email.
-                        </label>
+                        <input type="radio" name="emailConsent" onChange={handleChange} value={true}/> Yes! I agree to be contacted via email.
                     </div>
 
                     <Button 
@@ -163,7 +181,7 @@ const IntakeForm = (props) => {
                         className={classes.button} 
                         size="large"
                         type="submit"
-                        disabled={disabled}
+                        disabled={false}
                     >
                         Submit
                     </Button>
@@ -177,13 +195,18 @@ const IntakeForm = (props) => {
                     >
                         Clear
                     </Button>
-
-                    <div className="intake-errors">
-                        <p>{intakeErrors.name}</p>
-                        <p>{intakeErrors.email}</p>
-                        <p>{intakeErrors.birthDate}</p>
-                        <p>{intakeErrors.emailConsent}</p>
-                    </div>
+                    {console.log(displayErrors,intakeErrors)}
+                    {
+                        displayErrors?
+                            <div className="intake-errors">
+                                <p>{intakeErrors.name}</p>
+                                <p>{intakeErrors.email}</p>
+                                <p>{intakeErrors.birthDate}</p>
+                                <p>{intakeErrors.emailConsent}</p>
+                            </div>
+                            :
+                            ''
+                    }
 
                 </form>
 
@@ -194,4 +217,3 @@ const IntakeForm = (props) => {
 };
 
 export default IntakeForm;
-

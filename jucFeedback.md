@@ -13,7 +13,9 @@ Coding Project - 3/5
 
 Your form page looks great and is user-friendly. 
 
-[] Your validation mostly works according to the specifications, except your date input is required when it should be able to be left empty. 
+[x] Your validation mostly works according to the specifications, except your date input is required when it should be able to be left empty. 
+- adjusted Yup validation to make date optional
+- solution was to make date nullible and then add a conditional in the validation helper which would allow the empty input (empty string) to pass null to the formValues
 
 [x] Your clear button mostly works, except it does not clear out validation errors or the "agree to be contacted" radio button. 
 - window.location.reload();
@@ -23,7 +25,8 @@ Your form submits the correct data in the correct format. Nice job!
 
 A few minor nit-picks: 
 
-[] Your validation errors appear very early while the user is still filling out the form, which is a strange experience for the user. One idea is to wait for an input to be blurred before displaying validation errors. 
+[x] Your validation errors appear very early while the user is still filling out the form, which is a strange experience for the user. One idea is to wait for an input to be blurred before displaying validation errors. 
+- move validation to the handleSubmit helper function from the handleChange helper
 
 
 [x] The validation error for the date says “this must be a `date` type, but the final value was: `Invalid Date` (cast from the value `””`).” It would be nice to use a simpler error message rather than the raw error given to you by your validation tool. 
